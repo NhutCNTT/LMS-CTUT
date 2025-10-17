@@ -79,32 +79,7 @@ public class UserController {
         return "user/login"; //when fail return login page
     }
 
-//    @PostMapping("/processLogin")
-//    public String processLogin(Model model, Users users){
-//        Optional<Users> existsUsers = usersRepos.findByEmail(users.getEmail());
-//        if(existsUsers.isPresent()){
-//            Users dbUsers = existsUsers.get();
-//            if(passwordEncoder.matches(users.getPassword(),dbUsers.getPassword())){
-//                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-//                        dbUsers.getEmail(),
-//                        dbUsers.getPassword(),
-//                        List.of(new SimpleGrantedAuthority("USER"))
-//                );
-//                //Set Security Context
-//                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-//                return "redirect:/user/home";
-//
-//            }
-//            else {
-//                model.addAttribute("ErrorLogin","Email Or Password Is Not Correct");
-//            }
-//
-//        }
-//        else {
-//            model.addAttribute("Error","Email Or Password Is Not Correct");
-//        }
-//        return "user/login";
-//    }
+
 
     @GetMapping("/register")
     public String signup(){

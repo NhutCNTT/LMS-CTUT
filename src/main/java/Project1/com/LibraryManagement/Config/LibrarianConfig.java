@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @Order(1)
-public class AdminConfig {
+public class LibrarianConfig {
     @Bean
     public FilterRegistrationBean<Filter> librarianLoggingFilter() {
         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
