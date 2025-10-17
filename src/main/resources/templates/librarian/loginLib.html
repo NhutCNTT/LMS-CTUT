@@ -52,7 +52,7 @@
     <div class="login-card">
         <h4><i class="bi bi-person-circle me-2"></i>Login With Librarian</h4>
 
-        <form id="loginForm" th:action="@{/user/login}" method="post">
+        <form id="loginForm" th:action="@{/librarian/loginLib}" method="post">
             <!-- Email -->
             <div class="mb-3">
                 <input type="text" name="email" id="username" class="form-control" placeholder="Email (student@ctut.edu.vn)" required>
@@ -90,8 +90,8 @@
 
             <!-- Links dưới nút Login -->
             <div class="d-flex justify-content-between mt-3 small-link-block">
-                <a class="form-link" th:href="@{/user/register}">Register</a>
-                <a class="form-link" th:href="@{/user/home}">Continue as Guest</a>
+
+                <a class="form-link" th:href="@{/librarian/dashboard}">Continue as Guest</a>
             </div>
         </form>
 

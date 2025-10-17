@@ -26,17 +26,18 @@ public class AdminConfig {
         });
         return registrationBean;
     }
-
     @Bean
     public SecurityFilterChain librarianSecurityFilterChain(HttpSecurity http) throws Exception{
         return http
                 .securityMatcher("/librarian/**")
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().hasRole("ADMIN")
+                        .requestMatchers("/librarian/loginLib").permitAll()
+                        .requestMatchers("/librarian/**").hasRole("Librarian")
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/librarian/login")
-                        .loginProcessingUrl("/librarian/login")
+                        .loginPage("/librarian/loginLib")
+                        .loginProcessingUrl("/librarian/loginLib")
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/librarian/dashboard",true)
@@ -44,11 +45,11 @@ public class AdminConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/librarian/login")
+                        .logoutSuccessUrl("/librarian/loginLib")
                 )
                 .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/librarian/login")
-                        .defaultSuccessUrl("/librarian/home",true)
+                        .loginPage("/librarian/loginLib")
+                        .defaultSuccessUrl("/librarian/dashboard",true)
                         .permitAll()
                 )
                 .sessionManagement(session -> session

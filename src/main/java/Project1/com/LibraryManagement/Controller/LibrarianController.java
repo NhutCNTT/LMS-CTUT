@@ -1,5 +1,8 @@
 package Project1.com.LibraryManagement.Controller;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/librarian")
 public class LibrarianController {
 
+    @GetMapping("/loginLib")
+    public String loginLibrarian(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)){
+            return "redirect:/librarian/dashboard";
+        }
+        return "librarian/loginLib";
+    }
     // Trang chính thư viện
     @GetMapping( "/dashboard")
     public String libraryDashboard() {

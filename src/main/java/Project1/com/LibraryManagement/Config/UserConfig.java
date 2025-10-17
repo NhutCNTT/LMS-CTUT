@@ -16,18 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @Order(2)
 public class UserConfig {
-    @Bean
-    public FilterRegistrationBean<Filter> userLoggingFilter() {
-        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter((request, response, chain) -> {
-            HttpServletRequest req = (HttpServletRequest) request;
-            HttpSession session = req.getSession(false);
-            System.out.println("PATH: " + req.getRequestURI());
-            System.out.println("Session ID: " + (session != null ? session.getId() : "NO SESSION"));
-            chain.doFilter(request, response);
-        });
-        return registrationBean;
-    }
+
     @Bean
     public SecurityFilterChain userSecurityFilterChain(HttpSecurity http) throws Exception{
         return http
